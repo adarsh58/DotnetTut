@@ -944,3 +944,70 @@ button, input, select, textarea {
   }
 }
 
+/* LeetCode Visualizer Custom Animations & Styling */
+.code-line-row {
+  display: flex;
+  align-items: center;
+}
+.active-code-line {
+  background-color: rgba(6, 182, 212, 0.15);
+  border-left: 3px solid var(--accent-color) !important;
+}
+
+[data-theme="light"] .active-code-line {
+  background-color: rgba(8, 145, 178, 0.1);
+  border-left: 3px solid var(--accent-color) !important;
+}
+
+/* Tab Active overrides */
+.course-tabs-header button.active {
+  background-color: var(--accent-glow) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+
+/* Animations for simulation nodes */
+@keyframes nodePulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(6, 182, 212, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+}
+
+.visual-node-pulse {
+  animation: nodePulse 1.5s infinite ease-in-out;
+}
+
+/* Custom C# Syntax overrides */
+.vs-keyword {
+  color: #569cd6 !important;
+}
+.vs-string {
+  color: #d69d85 !important;
+}
+.vs-comment {
+  color: #57a64a !important;
+}
+.vs-type {
+  color: #4ec9b0 !important;
+}
+.vs-number {
+  color: #b5cea8 !important;
+}
+
+[data-theme="light"] .vs-keyword {
+  color: #0000ff !important;
+}
+[data-theme="light"] .vs-string {
+  color: #a31515 !important;
+}
+[data-theme="light"] .vs-comment {
+  color: #008000 !important;
+}
+[data-theme="light"] .vs-type {
+  color: #2b91af !important;
+}
+[data-theme="light"] .vs-number {
+  color: #09885a !important;
+}
+
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { HashRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import CourseView from './pages/CourseView.jsx'
+import LeetCode from './pages/LeetCode.jsx'
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -34,6 +35,13 @@ export default function App() {
               Dashboard
             </NavLink>
             
+            <NavLink 
+              to="/leetcode" 
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
+              LeetCode
+            </NavLink>
+            
             <button 
               className="theme-toggle" 
               onClick={toggleTheme}
@@ -54,6 +62,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/course/:courseId" element={<CourseView />} />
             <Route path="/course/:courseId/:lessonSlug" element={<CourseView />} />
+            <Route path="/leetcode" element={<LeetCode />} />
           </Routes>
         </main>
       </div>
