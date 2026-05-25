@@ -32,7 +32,7 @@ export default function CourseView() {
   const [completedLessons, setCompletedLessons] = useState([]);
   
   // Sidebar visibility on mobile
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // active tab: 'lesson' | 'notes' | 'quiz'
   const [activeTab, setActiveTab] = useState('lesson');
@@ -78,9 +78,7 @@ export default function CourseView() {
   const handleLessonClick = (slug) => {
     navigate(`/course/${courseId}/${slug}`);
     setActiveTab('lesson'); // Reset to lesson body view on change
-    if (window.innerWidth <= 768) {
-      setIsSidebarOpen(false); // Collapses on mobile after click
-    }
+    setIsSidebarOpen(false); // Collapses drawer on mobile/tablet after click
   };
 
   const toggleLessonComplete = (slug, e) => {
@@ -115,35 +113,25 @@ export default function CourseView() {
 
   return (
     <div className="viewer-layout fade-in">
+      {/* Sidebar Backdrop Overlay for Mobile/Tablet */}
+      {isSidebarOpen && (
+        <div 
+          className="sidebar-backdrop" 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Mobile Sidebar Toggle Button */}
       <button 
-        style={{
-          position: 'absolute',
-          bottom: '1.5rem',
-          right: '1.5rem',
-          zIndex: 110,
-          width: '50px',
-          height: '50px',
-          borderRadius: '50%',
-          backgroundColor: 'var(--accent-color)',
-          color: '#ffffff',
-          border: 'none',
-          boxShadow: '0 4px 15px rgba(6, 182, 212, 0.4)',
-          cursor: 'pointer',
-          display: window.innerWidth <= 768 ? 'flex' : 'none',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '1.25rem'
-        }}
         onClick={() => setIsSidebarOpen(prev => !prev)}
         className="sidebar-toggle-btn"
+        title="Toggle Syllabus"
       >
         <i className={`fa-solid ${isSidebarOpen ? 'fa-xmark' : 'fa-list-ul'}`}></i>
       </button>
 
       {/* Syllabus Sidebar */}
-      {isSidebarOpen && (
-        <aside className="syllabus-sidebar">
+      <aside className={`syllabus-sidebar ${isSidebarOpen ? 'open' : ''}`}>
           <div className="sidebar-header">
             <h2 className="sidebar-title">{course.title}</h2>
             <div className="progress-container">
@@ -226,19 +214,12 @@ export default function CourseView() {
             })}
           </div>
         </aside>
-      )}
 
       {/* Main Content Area */}
       <section className="article-container">
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           {/* Tab Navigation header */}
-          <div style={{
-            display: 'flex',
-            gap: '1rem',
-            borderBottom: '1px solid var(--border-color)',
-            marginBottom: '2rem',
-            paddingBottom: '0.5rem'
-          }}>
+          <div className="course-tabs-header">
             <button
               onClick={() => setActiveTab('lesson')}
               style={{
