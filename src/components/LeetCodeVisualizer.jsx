@@ -650,7 +650,7 @@ export default function LeetCodeVisualizer({ patternId, csharpCode }) {
   const currentFrame = frames[currentFrameIdx] || { message: 'Loading simulation...' };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', height: '100%' }}>
+    <div className="leetcode-visualizer-grid">
       {/* Simulation Visual Canvas */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         

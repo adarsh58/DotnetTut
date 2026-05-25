@@ -67,8 +67,17 @@ export default function LeetCode() {
       {/* Sidebar List panel */}
       <aside className={`syllabus-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <h3 className="sidebar-title">LeetCode Algorithms</h3>
-          <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Master C# coding patterns</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h3 className="sidebar-title" style={{ margin: 0 }}>LeetCode Algorithms</h3>
+            <button 
+              className="sidebar-close-btn"
+              onClick={() => setIsSidebarOpen(false)}
+              aria-label="Close sidebar"
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.35rem' }}>Master C# coding patterns</p>
           
           <div className="sidebar-search">
             <i className="fa-solid fa-magnifying-glass"></i>
